@@ -60,6 +60,7 @@ int main(int argc, char* argv[])
 
     while (true)
     {
+        label_case:
         cout << "\nВыберите одну из операций:" << endl;
         cout << "1. Вывести матрицу" << endl;
         cout << "2. Сложить матрицу" << endl;
@@ -74,6 +75,7 @@ int main(int argc, char* argv[])
         {
             case 8:
             {
+                cout << "До свидания!" << endl;
                 return 0;
             }
             
@@ -97,12 +99,12 @@ int main(int argc, char* argv[])
             {
                 cout << endl;
                 cout << "Введите элементы матрицы размера " << x << "*" << y << endl;
-                int arrsumm[x][y];
+                int arroper[x][y];
                 for(i=0; i<x; i++)
                 {
                     for(j=0; j<y; j++)
                     {
-                        cin >> arrsumm[i][j];
+                        cin >> arroper[i][j];
                     }
                 }
                 
@@ -112,12 +114,58 @@ int main(int argc, char* argv[])
                 {
                     for(j=0; j<y; j++)
                     {
-                        cout << arr[i][j] + arrsumm[i][j] << " ";
+                        cout << arr[i][j] + arroper[i][j] << " ";
                     }
                     cout << endl;
                 }
                 break;
             }
+            
+            
+            case 3:
+            {
+                cout << endl;
+                cout << "Введите кол-во строк" << endl;
+                cin >> m;
+                cout << "Введите кол-во столбцов" << endl;
+                cin >> n;
+                
+                if (m != y)
+                {
+                    cout << "Число строк в исходной матрице не равно числу столбцов в данной";
+                    goto label_case;
+                }
+                
+                cout << "Введите элементы матрицы размера " << m << "*" << n << endl;
+                
+                int arroper[m][n];
+                for(i=0; i<m; i++)
+                {
+                    for(j=0; j<n; j++)
+                    {
+                        cin >> arroper[i][j];
+                    }
+                }
+                break;
+            }
+            
+            
+            case 4:
+            {
+                cout << endl;
+                for (i=0; i<y; i++)
+                {
+                    for (j=0; j<x; j++)
+                    {
+                        swap(i, j);
+                        cout << arr[i][j] << " ";
+                        swap (j, i);
+                    }
+                    cout << endl;
+                }
+            }
+            
+            break;
 
             
             
