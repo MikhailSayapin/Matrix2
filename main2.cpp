@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <string.h>
+#include <fstream>
 
 using namespace std;
 
@@ -14,7 +15,7 @@ int main(int argc, char* argv[])
     }
 
     string str1 = "\0", str2 = "\0";
-    int x, y, i, j, k, m, n; // k используется на всём протяжении программы для разных целей.
+    int x, y, i, j, k, m, n; 
     for (k = 0; argv[1][k] != '*'; k++)
     {
         str1 += argv[1][k];
@@ -132,20 +133,52 @@ int main(int argc, char* argv[])
                 
                 if (m != y)
                 {
-                    cout << "Число строк в исходной матрице не равно числу столбцов в данной";
+                    cout << "Число строк в исходной матрице не равно числу столбцов в данной.\n";
                     goto label_case;
                 }
                 
                 cout << "Введите элементы матрицы размера " << m << "*" << n << endl;
                 
                 int arroper[m][n];
-                for(i=0; i<m; i++)
+                for(j=0; j<m; j++)
                 {
-                    for(j=0; j<n; j++)
+                    for(int q=0; q<n; q++)
                     {
-                        cin >> arroper[i][j];
+                        cin >> arroper[j][q];
                     }
                 }
+               
+                int arroper2[x][n];
+                for (i = 0; i < x; i++) 
+                {
+                   for (int q = 0; q < n; q++)
+                   {
+                       arroper2[i][q] = 0;
+                   }
+                }
+                
+                for(i=0; i<x; i++)
+                {
+                    for(j=0; j<y; j++)
+                    {
+                        for (int q=0; q<n; q++)
+                        {
+                            arroper2[i][q] = arr[i][j] * arroper[j][q] + arroper2[i][q];
+                        }
+                    }
+                }
+                
+                 for(i=0; i<x; i++)
+                {
+                   for (int q=0; q<n; q++)
+                   {
+                       cout << arroper2[i][q] << " ";
+                   }
+                   cout << endl;
+                }
+                
+                
+    
                 break;
             }
             
@@ -166,8 +199,7 @@ int main(int argc, char* argv[])
             }
             
             break;
-
-            
+           
             
             default:
                 cout << "Номер операции введён неверно.";
